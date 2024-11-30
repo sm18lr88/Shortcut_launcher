@@ -20,6 +20,8 @@ Ideal for managing complex commands, launching applications with specific parame
 
 ## Installation
 
+Windows users, you can just download the [compiled executable](https:) if you'd like.
+
 ### One-Line Installation (Conda/Miniconda + Git)
 ```bash
 conda create -n shortcuts && conda activate shortcuts && pip install pyqt6 pyside6 && git clone https://github.com/sm18lr88/Shortcut_launcher.git && cd Shortcut_launcher && python run.py
@@ -75,7 +77,49 @@ conda create -n shortcuts && conda activate shortcuts && pip install pyqt6 pysid
 
 - General logs: `logs/app.log`
 - Error logs: `logs/error.log`
-- Errors trigger user-friendly notifications.
+- Errors trigger user notifications.
+
+## To compile the app into executable for your platform:
+
+### Windows
+```bash
+pyinstaller --name ShortcutLauncher ^
+            --add-data "app/styles;app/styles" ^
+            --add-data "data;data" ^
+            --hidden-import PyQt6 ^
+            --noconsole ^
+            --onefile ^
+            --clean ^
+            run.py
+```
+
+### Linux
+```bash
+pyinstaller --name ShortcutLauncher \
+            --add-data "app/styles:app/styles" \
+            --add-data "data:data" \
+            --hidden-import PyQt6 \
+            --noconsole \
+            --onefile \
+            --clean \
+            run.py
+```
+
+### Mac:
+```bash
+# First, generate a spec file
+pyi-makespec --name ShortcutLauncher \
+             --add-data "app/styles:app/styles" \
+             --add-data "data:data" \
+             --hidden-import PyQt6 \
+             --noconsole \
+             --onefile \
+             run.py
+
+# Then edit the spec file to add macOS-specific options and build using:
+pyinstaller ShortcutLauncher.spec
+```
+
 
 ## Roadmap
 
