@@ -2,12 +2,30 @@
 
 import json
 import os
+import sys
 import logging
+
+def get_data_path():
+    """Get the base path for data files"""
+    if getattr(sys, 'frozen', False):
+        base_path = os.path.dirname(sys.executable)
+    else:
+        base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, 'data')
+
+def get_style_path():
+    """Get the base path for style files"""
+    if getattr(sys, 'frozen', False):
+        base_path = sys._MEIPASS
+    else:
+        base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, 'app', 'styles')
 
 class SettingsManager:        
     def __init__(self):
-        self.file_path = os.path.join('data', 'settings.json')
-        os.makedirs('data', exist_ok=True)
+        data_dir = get_data_path()
+        os.makedirs(data_dir, exist_ok=True)
+        self.file_path = os.path.join(data_dir, 'settings.json')
         self.settings = {}
         self.load_settings()
 
@@ -34,7 +52,7 @@ class SettingsManager:
     def get_style_sheet(self):
         try:
             theme = self.settings.get('theme', 'dark')
-            style_file = os.path.join('app', 'styles', f'{theme}.qss')
+            style_file = os.path.join(get_style_path(), f'{theme}.qss')
             if not os.path.exists(style_file):
                 logging.warning(f"Style file not found: {style_file}")
                 return ""
