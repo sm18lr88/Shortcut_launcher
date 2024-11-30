@@ -1,0 +1,23 @@
+{
+    "Chatbots": [
+        {
+            "name": "Kotaemon",
+            "command": "conda activate kotaemon && python path\\to\\kotaemon\\main.py"
+        },
+        {
+            "name": "GoChat",
+            "command": "go run path/to/gochat/main.go"
+        }
+    ],
+    "Productivity": [
+        {
+            "name": "PyProductive",
+            "command": "python path\\to\\PyProductive\\app.py"
+        },
+        {
+            "name": "OpenAI_TTS",
+            "command": "conda activate openai && python \"E:\\Documents\\Apps\\OpenAI_TTS_GUI\\main.py\""
+        }
+    ],
+    "Docker": []
+}
