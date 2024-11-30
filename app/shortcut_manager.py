@@ -2,15 +2,28 @@
 
 import json
 import os
+import sys
 import logging
+
+def get_data_path():
+    """Get the base path for data files"""
+    if getattr(sys, 'frozen', False):
+        # If the application is run as a bundle
+        base_path = os.path.dirname(sys.executable)
+    else:
+        # If the application is run from a Python interpreter
+        base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, 'data')
 
 class ShortcutManager:
     def __init__(self):
-        self.file_path = os.path.join('data', 'shortcuts.json')
-        os.makedirs('data', exist_ok=True)
+        data_dir = get_data_path()
+        os.makedirs(data_dir, exist_ok=True)
+        self.file_path = os.path.join(data_dir, 'shortcuts.json')
         self.shortcuts = {}
         self.load_shortcuts()
 
+    # Rest of the methods remain the same
     def load_shortcuts(self):
         try:
             if not os.path.exists(self.file_path):
@@ -34,7 +47,6 @@ class ShortcutManager:
             logging.error(f"Error saving shortcuts: {e}")
 
     def get_command(self, category, shortcut_name):
-        """Get the command for a specific shortcut in a category."""
         try:
             for shortcut in self.shortcuts.get(category, []):
                 if shortcut['name'] == shortcut_name:
