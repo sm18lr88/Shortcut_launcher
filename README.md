@@ -20,7 +20,7 @@ Ideal for managing complex commands, launching applications with specific parame
 
 ## Installation
 
-Windows users, you can just download the [compiled executable](https:) if you'd like.
+Windows users, you can just download the [compiled executable](https://github.com/sm18lr88/Shortcut_launcher/releases/download/alpha_0.1/ShortcutLauncher.exe) if you'd like.
 
 ### One-Line Installation (Conda/Miniconda + Git)
 ```bash
