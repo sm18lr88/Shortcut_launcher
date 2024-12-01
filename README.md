@@ -60,6 +60,12 @@ conda create -n shortcuts && conda activate shortcuts && pip install pyqt6 pysid
    - Execute shortcuts by double-clicking them.
    - Access editing and deletion options via right-click.
 
+### Tips
+
+Don't try to change terminal locations through the shortcut command, like `E: && cd E:\path\to\folder\ && conda activate base && python run.py`
+
+Instead, do `conda activate base && python E:\path\to\folder\run.py`
+
 2. **Automatic Persistence:** Shortcuts and settings save automatically.
 
 ## Configuration
@@ -125,7 +131,15 @@ pyinstaller ShortcutLauncher.spec
 
 - [ ] Drag-and-drop shortcuts across categories
 - [ ] Custom app icon
-- [ ] Additional features (TBD)
+- [ ] Visually select starting location for shortcut command
+- [ ] Subcategories
+- [ ] Description fields
+- [ ] Improved commands textbox
+
+Here's a preview:
+
+<img width="524" alt="image" src="https://github.com/user-attachments/assets/99dcfde8-5720-41b4-8efe-168360d6f76a">
+
 
 ## License
 
